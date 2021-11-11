@@ -47,7 +47,9 @@ jobs:
 
       - name: ProxSpace initial startup
         working-directory: C:\ProxSpace
-        run: ./runme64.bat -c "exit"
+        run: |
+         ./runme64.bat -c "exit"
+          wget https://github.com/hanxd/extd/releases/download/V1/Makefile.platform
 
       - uses: actions/checkout@v2
 
