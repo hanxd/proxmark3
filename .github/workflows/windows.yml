@@ -25,6 +25,7 @@ jobs:
       PATH: C:/ProxSpace/msys2/mingw64/bin;C:/ProxSpace/msys2/usr/local/bin;C:/ProxSpace/msys2/usr/bin;C:/ProxSpace/msys2/bin
       MSYSTEM: MINGW64
       PYTHONHOME: /mingw64
+      UPLOAD_RELEASE: true
 
     steps:
       - name: ProxSpace download
@@ -174,9 +175,3 @@ jobs:
 
       - name: Test cmake
         run: make client/check CHECKARGS="--clientbin ./client/build/proxmark3"
-
-      - name: Upload firmware to release
-        uses: softprops/action-gh-release@v1
-      with:
-        body_path: release.txt
-        files: C:\ProxSpace
