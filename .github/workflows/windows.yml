@@ -175,8 +175,12 @@ jobs:
       - name: Test cmake
         run: make client/check CHECKARGS="--clientbin ./client/build/proxmark3"
 
-    - name : Upload artifact
-      uses: actions/upload-artifact@master
+    - name: Upload firmware to release
+      uses: softprops/action-gh-release@v1
+      if: steps.tag.outputs.status == 'success' && !cancelled()
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        name: OpenWrt
-        path: client/build/
+        tag_name: ${{ steps.tag.outputs.release_tag }}
+        body_path: release.txt
+        files: ${{ env.FIRMWARE }}/*
