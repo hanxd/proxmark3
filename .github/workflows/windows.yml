@@ -174,3 +174,9 @@ jobs:
 
       - name: Test cmake
         run: make client/check CHECKARGS="--clientbin ./client/build/proxmark3"
+
+    - name : Upload artifact
+      uses: actions/upload-artifact@master
+      with:
+        name: OpenWrt
+        path: client/build/
